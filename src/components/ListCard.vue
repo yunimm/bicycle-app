@@ -1,7 +1,7 @@
 <script setup>
 import BorrowInfo from '@/components/BorrowInfo.vue'
 import ParkingInfo from '@/components/ParkingInfo.vue'
-import { reactive, computed } from 'vue'
+import { reactive } from 'vue'
 const data = reactive([
   {
     location: '太原廣場12345566699999',
@@ -21,7 +21,7 @@ const data = reactive([
 </script>
 
 <template>
-  <div v-for="item in data" :key="index">
+  <div v-for="item in data">
     <div class="mt-4 flex flex-nowrap items-center justify-between">
       <div class="flex items-center">
         <span
