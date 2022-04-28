@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* 數量等於0 */
+  .isZero {
+    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-grey-200 px-4 leading-10 text-grey-400;
+  }
+  /* 數量小於5 */
+  .isLimit {
+    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-alert-100 px-4 leading-10 text-alert-400;
+  }
+  /* 數量大於5 */
+  .isEnough {
+    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-primary-100 px-4 leading-10 text-primary-400;
+  }
+  /* 預設狀態-可借可還 */
+  .defaultState {
+    @apply rounded border border-accent-500 py-[1px] px-1 text-xs text-accent-500;
+  }
+  /* 只可租車和只可停車 */
+  .parkOnly,
+  .rentOnly {
+    @apply rounded border border-alert-300 py-[1px] px-1 text-xs text-alert-400;
+  }
+  /* 站點施工中 */
+  .fixState {
+    @apply rounded border border-grey-300 py-[1px] px-1 text-xs text-grey-400;
+  }
+}

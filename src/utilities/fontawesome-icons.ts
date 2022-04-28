@@ -13,8 +13,8 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faAngleUp } from '@fortawesome/free-solid-svg-icons'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faSquareParking)
 library.add(faBicycle)
@@ -29,7 +29,7 @@ library.add(faPhone)
 library.add(faClock)
 library.add(faUtensils)
 library.add(faBars)
-library.add(faAngleUp)
-library.add(faAngleDown)
+library.add(faCaretUp)
+library.add(faCaretDown)
 
 export default FontAwesomeIcon
