@@ -26,14 +26,14 @@ function switchNavbar() {
           <font-awesome-icon icon="bicycle" />
           <li>找單車</li>
         </a>
-        <a href="">
+        <router-link :to="{ name: 'route' }">
           <font-awesome-icon icon="route" />
           <li>找路線</li>
-        </a>
-        <a href="">
+        </router-link>
+        <router-link :to="{ name: 'tourist-spot' }">
           <font-awesome-icon icon="umbrella-beach" />
           <li>找景點</li>
-        </a>
+        </router-link>
       </ul>
       <div
         class="bg-accent-100 p-2 text-center text-xs font-bold text-accent-600"
@@ -44,6 +44,7 @@ function switchNavbar() {
     </div>
     <!-- 切換尋找類別按鈕 -->
     <div
+      v-if="$route.name === 'route' || $route.name === 'home'"
       class="fixed left-1/2 z-10 mt-3 flex h-[36px] w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 after:top-[10%]"
     >
       <button
@@ -55,6 +56,21 @@ function switchNavbar() {
       <button class="rounded-[16px] px-3 font-bold text-primary-400">
         <font-awesome-icon class="mr-1 text-lg" icon="square-parking" />
         <span>找車位</span>
+      </button>
+    </div>
+    <div
+      v-else="$route.name === 'tourist-spot'"
+      class="fixed left-1/2 z-10 mt-3 flex h-[36px] w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 after:top-[10%]"
+    >
+      <button
+        class="rounded-[16px] bg-primary-400 px-3 font-bold text-grey-100"
+      >
+        <font-awesome-icon class="mr-1" icon="umbrella-beach" />
+        <span>找景點</span>
+      </button>
+      <button class="rounded-[16px] px-3 font-bold text-primary-400">
+        <font-awesome-icon class="mr-1 text-lg" icon="utensils" />
+        <span>找餐廳</span>
       </button>
     </div>
   </header>
