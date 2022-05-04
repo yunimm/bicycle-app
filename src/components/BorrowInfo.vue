@@ -1,7 +1,7 @@
 <template>
-  <li>
+  <li class="xl:flex xl:flex-col xl:justify-center xl:pb-1">
     <div>
-      <font-awesome-icon class="mr-1 text-xs" icon="bicycle" />
+      <font-awesome-icon class="mr-1 text-xs xl:text-sm" icon="bicycle" />
       <span class="mr-3 text-[0.94rem]">可租借</span>
     </div>
     <slot class="text-xl font-bold" name="borrow-number"></slot>

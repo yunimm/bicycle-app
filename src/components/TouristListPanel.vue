@@ -1,7 +1,9 @@
 <script setup>
 import Searchbar from '@/components/Searchbar.vue'
 import SortBtn from '@/components/SortBtn.vue'
-// import TouristListCard from '@/components/TouristListCard.vue'
+import ListPanel from '@/components/ListPanel.vue'
+import TouristListCard from '@/components/TouristListCard.vue'
+import TouristDetailPanel from '@/components/TouristDetailPanel.vue'
 import { reactive } from 'vue'
 import { ref } from 'vue'
 
@@ -39,7 +41,7 @@ const data = reactive([
 </script>
 
 <template>
-  <div class="h-fll absolute bottom-0 w-full border shadow-2xl">
+  <div class="absolute bottom-0 w-full shadow-2xl xl:hidden">
     <div class="h-[213px] rounded-t-lg bg-grey-100 py-5 px-6">
       <div class="flex">
         <Searchbar class="grow" />
@@ -73,45 +75,14 @@ const data = reactive([
       </div>
     </div>
   </div>
-  <!-- 觸發面板 -->
-  <div class="absolute bottom-64 w-full shadow-lg">
-    <button
-      @click.stop.prevent="switchPanel"
-      class="absolute left-1/2 -translate-x-8 -translate-y-4 rounded-t-md bg-grey-100 px-6"
-    >
-      <font-awesome-icon class="mb-1 text-grey-400" icon="caret-down" />
-    </button>
-    <div class="h-[213px] rounded-t-lg bg-grey-300 py-5 px-6">
-      <div class="relative">
-        <img
-          class="block h-[97px] bg-red-400"
-          src=""
-          alt="scenery photo on screen"
-        />
-        <div class="absolute bottom-0 right-0 p-2">
-          <button
-            class="h-7 w-7 rounded-full border border-primary-300 bg-white text-primary-300 hover:bg-primary-300 hover:text-grey-100 focus:bg-grey-100 focus:text-primary-300 focus:ring-1 focus:ring-primary-300 disabled:border-grey-100 disabled:bg-white disabled:text-grey-300"
-          >
-            <font-awesome-icon icon="globe-americas" />
-          </button>
-          <button
-            class="ml-2 h-7 w-7 rounded-full border border-primary-300 bg-white text-primary-300 hover:bg-primary-300 hover:text-grey-100 focus:bg-grey-100 focus:text-primary-300 focus:ring-1 focus:ring-primary-300 disabled:border-grey-100 disabled:bg-white disabled:text-grey-300"
-          >
-            <font-awesome-icon icon="phone" />
-          </button>
-        </div>
-      </div>
-      <div class="text-xs text-grey-400">
-        <h3 class="text-lg text-primary-500">中正紀念堂</h3>
-        <div>
-          <font-awesome-icon class="mb-1 text-grey-400" icon="map-marker-alt" />
-          <span>100台北市中山區中山南路21號 </span>
-        </div>
-        <div>
-          <font-awesome-icon class="mb-1 text-grey-400" icon="clock" />
-          <span>紀念堂開放時間: am09:00-pm06:00 (星期一不休館)</span>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <TouristDetailPanel />
+
+  <template class="hidden xl:block">
+    <ListPanel>
+      <template v-slot:card>
+        <TouristListCard />
+      </template>
+    </ListPanel>
+  </template>
 </template>

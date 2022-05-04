@@ -5,19 +5,19 @@
 @layer components {
   /* 數量等於0 */
   .isZero {
-    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-grey-200 px-4 leading-10 text-grey-400;
+    @apply flex h-10 w-full items-center justify-between rounded-md bg-grey-200 px-4 leading-10 text-grey-400 xl:h-auto;
   }
   /* 數量小於5 */
   .isLimit {
-    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-alert-100 px-4 leading-10 text-alert-400;
+    @apply flex h-10 w-full items-center justify-between rounded-md bg-alert-100 px-4 leading-10 text-alert-400 xl:h-auto;
   }
   /* 數量大於5 */
   .isEnough {
-    @apply inline-block flex h-10 w-[156px] items-center justify-between rounded-md bg-primary-100 px-4 leading-10 text-primary-400;
+    @apply flex h-10 w-full items-center justify-between rounded-md bg-primary-100 px-4 leading-10 text-primary-500 xl:h-auto;
   }
   /* 預設狀態-可借可還 */
   .defaultState {
-    @apply rounded border border-accent-500 py-[1px] px-1 text-xs text-accent-500;
+    @apply rounded border border-accent-500 py-[1px] px-1 text-center text-xs text-accent-500 xl:h-[32px] xl:w-[86px] xl:text-sm xl:leading-7;
   }
   /* 只可租車和只可停車 */
   .parkOnly,
