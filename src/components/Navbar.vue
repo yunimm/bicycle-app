@@ -86,10 +86,10 @@ function switchNavbar() {
       class="fixed left-1/2 z-10 mt-3 flex h-9 w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 xl:h-[60px] xl:w-[276px] xl:py-2 xl:px-3"
     >
       <button
-        class="rounded-2xl bg-primary-400 px-3 font-bold text-grey-100 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"
+        class="switchAni rounded-2xl bg-primary-400 px-3 font-bold text-grey-100 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"
       >
         <font-awesome-icon class="mr-1 xl:mr-2" icon="bicycle" />
-        <span>找單車</span>
+        <span class="z-50">找單車</span>
       </button>
       <button
         class="rounded-2xl px-3 font-bold text-primary-400 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"

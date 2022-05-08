@@ -5,6 +5,7 @@ import { routes } from './routes.js'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import FontAwesomeIcon from "@/utilities/fontawesome-icons";
 
+
 const app = createApp(App)
 
 const router = createRouter({
