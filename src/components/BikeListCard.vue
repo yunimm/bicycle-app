@@ -1,13 +1,14 @@
 <script setup>
 import BorrowInfo from '@/components/BorrowInfo.vue'
 import ParkingInfo from '@/components/ParkingInfo.vue'
-import { ref, reactive, computed } from 'vue'
-
-const props = defineProps({ newDataProps: Object, input: String })
+import { storeToRefs } from 'pinia'
+import { useBikeStore } from '@/stores/bikeStore'
+const bikes = useBikeStore()
+bikes.getData()
+const { newData } = storeToRefs(useBikeStore())
 </script>
-
 <template>
-  <div v-for="item in newDataProps.data" class="mb-9" :id="item.uid">
+  <div v-for="item in newData" class="mb-9" :id="item.uid">
     <div class="mt-4 flex flex-nowrap items-center justify-between">
       <div class="flex items-center">
         <span
