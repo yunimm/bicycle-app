@@ -13,7 +13,7 @@
   }
   /* 數量大於5 */
   .isEnough {
-    @apply flex h-10 w-full items-center justify-between rounded-md bg-primary-100 px-4 leading-10 text-primary-500 xl:h-auto;
+    @apply flex h-10 w-full items-center justify-between rounded-md bg-primary-100 px-4 pb-2 leading-10 text-primary-500 xl:h-auto;
   }
   /* 預設狀態-可借可還 */
   .defaultState {

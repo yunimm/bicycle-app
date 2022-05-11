@@ -4,7 +4,7 @@ import SortBtn from '@/components/SortBtn.vue'
 import { ref } from 'vue'
 
 const isActive = ref(false)
-
+const keyword = ref('')
 function switchPanel() {
   isActive.value = !isActive.value
 }
@@ -31,7 +31,9 @@ function switchPanel() {
         icon="caret-up"
       />
     </button>
-    <div class="h-full rounded-t-lg bg-grey-100 py-5 px-6 xl:rounded-lg">
+    <div
+      class="h-full overflow-y-auto rounded-t-lg bg-grey-100 py-5 px-6 xl:rounded-lg"
+    >
       <div class="flex">
         <Searchbar class="grow" />
         <SortBtn />

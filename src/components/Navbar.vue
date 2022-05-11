@@ -8,14 +8,14 @@ function switchNavbar() {
 </script>
 <template>
   <header
-    class="fixed z-10 h-[34px] w-full bg-primary-400 xl:h-[76px] xl:px-[72px]"
+    class="fixed z-10 h-[34px] w-full bg-primary-400 xl:h-14 xl:px-[72px]"
   >
     <div
       class="flex h-full items-center justify-between py-2 px-5 text-grey-100"
     >
       <h1 class="p-auto flex h-full items-center justify-between">
         <img
-          class="p-auto h-full xl:h-1/2"
+          class="p-auto h-full xl:h-2/3"
           src="../assets/Logo.png"
           alt="logo on screen"
         />
