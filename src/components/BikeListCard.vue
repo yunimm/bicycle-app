@@ -1,11 +1,21 @@
 <script setup>
 import BorrowInfo from '@/components/BorrowInfo.vue'
 import ParkingInfo from '@/components/ParkingInfo.vue'
+import { watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useBikeStore } from '@/stores/bikeStore'
+
 const bikes = useBikeStore()
 bikes.getData()
-const { newData } = storeToRefs(useBikeStore())
+const { newData, lat, lng, isLoading } = storeToRefs(useBikeStore())
+
+watch([lat, lng], ([newLat, newLng]) => {
+  {
+    console.log('取得當前坐標', newLat, newLng)
+    bikes.clearData()
+    bikes.getData()
+  }
+})
 </script>
 <template>
   <div v-for="item in newData" class="mb-9" :id="item.uid">
@@ -15,7 +25,20 @@ const { newData } = storeToRefs(useBikeStore())
           class="mr-2 inline-block w-40 truncate text-[0.94rem] font-bold tracking-wide text-primary-500 xl:text-xl"
           >{{ item.name.Zh_tw }}</span
         >
-        <span class="fixState xl:hidden">123</span>
+        <span
+          v-show="item.rent && item.return > 0"
+          class="defaultState xl:hidden"
+          >可借可還</span
+        >
+        <span v-show="item.return === 0" class="singleService xl:hidden"
+          >只可借車</span
+        >
+        <span v-show="item.rent === 0" class="singleService xl:hidden"
+          >只可停車</span
+        >
+        <span v-show="item.rent && item.return === 0" class="fixState xl:hidden"
+          >站點施工中</span
+        >
       </div>
       <div class="text-grey-500 xl:hidden">
         <font-awesome-icon icon="map-marker-alt" />
@@ -51,10 +74,10 @@ const { newData } = storeToRefs(useBikeStore())
         <span v-show="item.rent && item.return > 0" class="defaultState"
           >可借可還</span
         >
-        <span v-show="item.return === 0" class="fixState">只可借車</span>
-        <span v-show="item.rent === 0" class="fixState">只可停車</span>
+        <span v-show="item.return === 0" class="singleService">只可借車</span>
+        <span v-show="item.rent === 0" class="singleService">只可停車</span>
         <span v-show="item.rent && item.return === 0" class="fixState"
-          >只可停車</span
+          >站點施工中</span
         >
         <div class="text-grey-500">
           <font-awesome-icon class="xl:text-base" icon="map-marker-alt" />

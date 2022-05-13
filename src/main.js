@@ -6,6 +6,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import FontAwesomeIcon from "@/utilities/fontawesome-icons";
 import { createPinia } from 'pinia'
 
+
 const app = createApp(App)
 
 const router = createRouter({
