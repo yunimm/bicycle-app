@@ -42,7 +42,7 @@ watch([lat, lng], ([newLat, newLng]) => {
       </div>
       <div class="text-grey-500 xl:hidden">
         <font-awesome-icon icon="map-marker-alt" />
-        <span class="ml-1 text-xs">距離item.distance公尺</span>
+        <span class="ml-1 text-xs">距離{{ item.betweens }}</span>
       </div>
     </div>
     <ul class="mt-2 flex items-center justify-between gap-1 xl:gap-6">
@@ -81,7 +81,7 @@ watch([lat, lng], ([newLat, newLng]) => {
         >
         <div class="text-grey-500">
           <font-awesome-icon class="xl:text-base" icon="map-marker-alt" />
-          <span class="ml-1 text-xs xl:text-sm">距離item.distance公尺</span>
+          <span class="ml-1 text-xs xl:text-sm">距離{{ item.betweens }}</span>
         </div>
       </div>
     </div>

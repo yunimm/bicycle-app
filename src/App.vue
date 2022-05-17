@@ -2,7 +2,7 @@
 import Navbar from '@/components/Navbar.vue'
 </script>
 <template>
-  <Navbar />
+  <Navbar class="z-50" />
   <main class="relative h-screen overflow-clip">
     <router-view />
   </main>

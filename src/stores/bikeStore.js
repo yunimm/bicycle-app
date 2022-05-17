@@ -6,7 +6,6 @@ export const useBikeStore = defineStore('bikeStore',{
     return {
       staticData: [],
       dynamicData: [],
-      city: 'Tainan',
       newData: [],
       keyword: '搜尋站點或鄰近地點',
       lat:'22.989704',
@@ -25,12 +24,11 @@ export const useBikeStore = defineStore('bikeStore',{
         this.staticData = (await instance.get(
           `api/advanced/v2/Bike/Station/NearBy?%24spatialFilter=nearby%28${this.lat}%2C%20${this.lng}%2C%201000%29&%24format=JSON`
         )).data
-        console.log('拉取附近的站點,第一支')
         this.dynamicData = (await instance.get(
           `api/advanced/v2/Bike/Availability/NearBy?%24spatialFilter=nearby%28${this.lat}%2C%20${this.lng}%2C%201000%29&%24format=JSON`
         )).data
-        console.log('拉第2支')
           await this.mixingData()
+          await this.nearAttractions()
           await this.doAjax()
       } catch(e) {
         console.log(e)
@@ -39,12 +37,14 @@ export const useBikeStore = defineStore('bikeStore',{
     mixingData(){
       this.staticData.forEach((station) => {
         this.dynamicData.forEach((item) => {
-          if (station.StationUID == item.StationUID) {
+          if (station.StationUID === item.StationUID) {
             let obj = {
               uId: station.StationUID,
               id: station.StationID,
               name: station.StationName,
               address: station.StationAddress.Zh_tw,
+              lat:station.StationPosition.PositionLat,
+              lng:station.StationPosition.PositionLon,
               status: item.ServiceStatus,
               rent: item.AvailableRentBikes,
               return: item.AvailableReturnBikes,
@@ -53,7 +53,6 @@ export const useBikeStore = defineStore('bikeStore',{
           } 
         })
       })
-      console.log('我執行完mixing了')
     },
     getUserLocation() {
       this.isActive = true
@@ -76,12 +75,47 @@ export const useBikeStore = defineStore('bikeStore',{
     },
     clearData() {
       this.newData = []
-      console.log('我清掉囉')
     },
     doAjax() {
       setTimeout(() => {
         this.isLoading = false
       }, 1000)
-    }
+    },
+    distance(lat1, lng1, lat2, lng2) {
+      if (lat1 == lat2 && lng1 == lng2) {
+        return 0
+      } else {
+        const radlat1 = (Math.PI * lat1) / 180
+        const radlat2 = (Math.PI * lat2) / 180
+        const theta = lng1 - lng2
+        const radtheta = (Math.PI * theta) / 180
+        let dist =
+          Math.sin(radlat1) * Math.sin(radlat2) +
+          Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta)
+        if (dist > 1) {
+          dist = 1
+        }
+        dist = Math.acos(dist)
+        dist = (dist * 180) / Math.PI
+        dist = dist * 60 * 1.1515
+    
+        // 轉為公里
+        dist = dist * 1.609344
+        return dist
+      }
+    },
+    nearAttractions(){
+      // 使用者位置
+      let lat1 = this.lat
+      let lng1 = this.lng
+      //計算車位離使用者的距離
+      this.newData.forEach(ele => {
+        let lat2 = ele.lat
+        let lng2 = ele.lng
+        let tmp  = this.distance(lat1, lng1, lat2, lng2)
+        ele.betweens = `${Math.floor(tmp * 1000)}公尺`
+      })
+    },
+    
   }
 })

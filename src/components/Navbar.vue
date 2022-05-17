@@ -1,9 +1,15 @@
 <script setup>
 import PositionBtn from '@/components/PositionBtn.vue'
 import { ref } from 'vue'
+
 const isActive = ref(false)
 function switchNavbar() {
   isActive.value = !isActive.value
+}
+const isSwitch = ref(false)
+function change() {
+  isSwitch.value = !isSwitch.value
+  console.log('按到了')
 }
 </script>
 <template>
@@ -80,18 +86,24 @@ function switchNavbar() {
       </div>
     </div>
     <!-- hamburger end -->
-    <!-- search-target mobile -->
+    <!-- switch-btn -->
+    <!-- <div
+      class="g-ani absolute left-[40%] top-16 z-30 h-12 bg-red-500 px-3 xl:w-[144px] xl:rounded-[40px]"
+    ></div> -->
     <div
       v-if="$route.name === 'route' || $route.name === 'home'"
-      class="fixed left-1/2 z-10 mt-3 flex h-9 w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 xl:h-[60px] xl:w-[276px] xl:py-2 xl:px-3"
+      @click.stop.prevent="change"
+      class="fixed left-1/2 z-20 mt-3 flex h-9 w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 xl:h-[60px] xl:w-[276px] xl:py-2 xl:px-3"
     >
       <button
-        class="switchAni rounded-2xl bg-primary-400 px-3 font-bold text-grey-100 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"
+        :class="{ active: isSwitch, textPrimary: isSwitch }"
+        class="g-ani relative rounded-2xl px-3 font-bold text-grey-100 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"
       >
         <font-awesome-icon class="mr-1 xl:mr-2" icon="bicycle" />
         <span class="z-50">找單車</span>
       </button>
       <button
+        :class="{ textWhite: isSwitch }"
         class="rounded-2xl px-3 font-bold text-primary-400 xl:w-[144px] xl:rounded-[40px] xl:text-lg xl:tracking-wider"
       >
         <font-awesome-icon class="mr-1 text-lg xl:mr-2" icon="square-parking" />
@@ -119,3 +131,36 @@ function switchNavbar() {
     <PositionBtn />
   </header>
 </template>
+
+<style>
+.g-ani::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  height: 44px;
+  background: #738047;
+  border-radius: 40px;
+  z-index: -1;
+  transition: all 0.5s;
+}
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  height: 44px;
+  background: #738047;
+  border-radius: 40px;
+  z-index: -1;
+  transform: translateX(133px);
+}
+.textPrimary {
+  color: #738047;
+}
+.textWhite {
+  color: white;
+}
+</style>
