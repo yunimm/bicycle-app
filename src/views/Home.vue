@@ -14,12 +14,41 @@ function onCancel() {
   console.log('User cancelled the loader.')
 }
 
-const center = [lat.value, lng.value]
-let map
-let markers
+// 初始化地圖
+let map = {}
 
-function initMap() {
-  map = L.map('map').setView(center, 13)
+// 車站標記
+function addMark() {
+  newData.value.forEach((item) => {
+    L.marker([item.lat, item.lng]).bindPopup(item.id).addTo(map)
+  })
+}
+// 使用者標記
+function userMark() {
+  const myIcon = L.icon({
+    iconUrl: '../src/assets/user-position.png',
+    iconSize: [50, 50],
+  })
+  map.eachLayer(function (layer) {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer)
+    }
+  })
+  L.marker([lat.value, lng.value], { icon: myIcon })
+    .bindPopup('<b>所在位置</b>')
+    .addTo(map)
+}
+function cleanMarker() {
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer)
+    }
+  })
+}
+onMounted(() => {
+  // 初始化地圖
+  // initMap()
+  map = L.map('map').setView([lat.value, lng.value], 13)
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
     {
@@ -33,48 +62,27 @@ function initMap() {
         'pk.eyJ1IjoieXV1OTkxNiIsImEiOiJjbDM5ZzR6MWwwOWo3M2JtbzVxMGowb2lhIn0.ob6jktqszpw5oXjGAAPy0g',
     }
   ).addTo(map)
-}
-function foundHandler(e) {
-  marker.setLatLng(e.latlng) // 移動 marker
-  // moveTo(map) // 移動到指定座標（平滑 || 縮放 效果）
-  // panBy(map) // 移動 x, y 位置
-  map.on('locationfound', foundHandler)
-}
-function addMark() {
-  // let markerGroup = L.layerGroup().addTo(map)
-  newData.value.forEach((item) => {
-    markers = L.marker([item.lat, item.lng])
-      .bindPopup('<b>Hello world!</b><br />I am a popup.')
-      .addTo(map)
-  })
-}
-function addPopup() {
-  marker.bindPopup('<b>目前位置</b>').openPopup()
-  map.locate({
-    setView: true, // 是否讓地圖跟著移動中心點
-    watch: true, // 是否要一直監測使用者位置
-    maxZoom: 18, // 最大的縮放值
-    enableHighAccuracy: true, // 是否要高精準度的抓位置
-    timeout: 10000, // 觸發locationerror事件之前等待的毫秒數
-  })
-}
-onMounted(() => {
-  // 初始化地圖
-  initMap()
+  userMark()
+  addMark()
 })
 
+// 參數改變就重繪
 watch(isLoading, () => {
-  console.log('改變了')
-  addMark()
+  {
+    addMark()
+  }
+})
+watch([lat, lng], () => {
+  userMark()
 })
 </script>
 <template>
-  <loading
+  <!-- <loading
     :active.sync="isLoading"
     :can-cancel="true"
     :on-cancel="onCancel"
     :is-full-page="fullPage"
-  ></loading>
+  ></loading> -->
   <div id="map" class="absolute bottom-0 z-0 h-[94%] w-full"></div>
   <BikeListPanel class="z-20" />
 </template>

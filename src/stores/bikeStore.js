@@ -30,6 +30,7 @@ export const useBikeStore = defineStore('bikeStore',{
           await this.mixingData()
           await this.nearAttractions()
           await this.doAjax()
+
       } catch(e) {
         console.log(e)
       }
@@ -70,7 +71,7 @@ export const useBikeStore = defineStore('bikeStore',{
           }
         )
       } else {
-        console.log('你的瀏覽器不支援geolocation API')
+        alert('你的瀏覽器不支援geolocation API')
       }
     },
     clearData() {
