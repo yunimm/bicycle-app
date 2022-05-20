@@ -17,10 +17,10 @@ export const routes = [
     component: () => import('./views/RouteMap.vue')
   },
   {
-    path: '/tourist-spot',
-    name: 'tourist-spot',
-    meta: { title: 'tourist-spot' },
-    component: () => import('./views/TouristSpot.vue')
+    path: '/empty',
+    name: 'empty',
+    meta: { title: 'empty' },
+    component: () => import('./views/BlankView.vue')
   },
   { path: '/:path(.*)', component: NotFound },
 ]

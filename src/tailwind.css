@@ -27,12 +27,13 @@
   .fixState {
     @apply rounded border border-grey-300 py-[1px] px-1 text-xs text-grey-400;
   }
-  /* 展開listPanel */
-  .isClickedPanel {
-    @apply absolute bottom-0 h-full w-full shadow-lg;
-  }
+
   /* 移動position btn */
   .moveByPanel {
     @apply bottom-[60%];
   }
+}
+/* 展開listPanel */
+.isClickedPanel {
+  @apply absolute bottom-0 h-[488px] w-full shadow-lg;
 }

@@ -11,14 +11,13 @@ const { newData, lat, lng, isLoading } = storeToRefs(useBikeStore())
 
 watch([lat, lng], ([newLat, newLng]) => {
   {
-    console.log('取得當前坐標', newLat, newLng)
     bikes.clearData()
     bikes.getData()
   }
 })
 </script>
 <template>
-  <div v-for="item in newData" class="mb-9" :id="item.uid">
+  <div v-for="item in bikes.searchData" class="mb-9" :id="item.uid">
     <div class="mt-4 flex flex-nowrap items-center justify-between">
       <div class="flex items-center">
         <span
@@ -42,7 +41,7 @@ watch([lat, lng], ([newLat, newLng]) => {
       </div>
       <div class="text-grey-500 xl:hidden">
         <font-awesome-icon icon="map-marker-alt" />
-        <span class="ml-1 text-xs">距離{{ item.betweens }}</span>
+        <span class="ml-1 text-xs">距離{{ item.betweens }}公尺</span>
       </div>
     </div>
     <ul class="mt-2 flex items-center justify-between gap-1 xl:gap-6">
@@ -81,7 +80,9 @@ watch([lat, lng], ([newLat, newLng]) => {
         >
         <div class="text-grey-500">
           <font-awesome-icon class="xl:text-base" icon="map-marker-alt" />
-          <span class="ml-1 text-xs xl:text-sm">距離{{ item.betweens }}</span>
+          <span class="ml-1 text-xs xl:text-sm"
+            >距離{{ item.betweens }}公尺</span
+          >
         </div>
       </div>
     </div>

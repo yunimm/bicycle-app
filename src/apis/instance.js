@@ -29,6 +29,7 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
+    this.$router.replace({ path:'/empty' })
     return Promise.reject(error);
   }
 )

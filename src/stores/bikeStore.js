@@ -7,7 +7,7 @@ export const useBikeStore = defineStore('bikeStore',{
       staticData: [],
       dynamicData: [],
       newData: [],
-      keyword: '搜尋站點或鄰近地點',
+      keyword: '',
       lat:'22.989704',
       lng:'120.201523',
       isLoading: false,
@@ -15,9 +15,13 @@ export const useBikeStore = defineStore('bikeStore',{
     }
   },
   getters: {
-
+    // 搜尋功能
+    searchData() {
+      return this.newData.filter(result => result.name.Zh_tw.match(this.keyword))
+    }
   },
   actions: {
+    // 取得api資料
     async getData() {
       try {
         this.isLoading = true
@@ -35,6 +39,7 @@ export const useBikeStore = defineStore('bikeStore',{
         console.log(e)
       }
     },
+    // 合併不同api資料
     mixingData(){
       this.staticData.forEach((station) => {
         this.dynamicData.forEach((item) => {
@@ -55,6 +60,7 @@ export const useBikeStore = defineStore('bikeStore',{
         })
       })
     },
+    // 取得使用者位置
     getUserLocation() {
       this.isActive = true
       if ('geolocation' in navigator) {
@@ -62,7 +68,6 @@ export const useBikeStore = defineStore('bikeStore',{
           (position) => {
             this.lat = position.coords.latitude
             this.lng = position.coords.longitude
-            console.log('步驟ㄧ:取得座標')
             this.isActive = false
           },
           (error) => {
@@ -74,14 +79,17 @@ export const useBikeStore = defineStore('bikeStore',{
         alert('你的瀏覽器不支援geolocation API')
       }
     },
+    // 清除newData資料
     clearData() {
       this.newData = []
     },
+    // loading延遲
     doAjax() {
       setTimeout(() => {
         this.isLoading = false
       }, 1000)
     },
+    // 計算經緯度距離
     distance(lat1, lng1, lat2, lng2) {
       if (lat1 == lat2 && lng1 == lng2) {
         return 0
@@ -105,6 +113,7 @@ export const useBikeStore = defineStore('bikeStore',{
         return dist
       }
     },
+    // 計算車位離使用者的距離
     nearAttractions(){
       // 使用者位置
       let lat1 = this.lat
@@ -114,9 +123,8 @@ export const useBikeStore = defineStore('bikeStore',{
         let lat2 = ele.lat
         let lng2 = ele.lng
         let tmp  = this.distance(lat1, lng1, lat2, lng2)
-        ele.betweens = `${Math.floor(tmp * 1000)}公尺`
+        ele.betweens = `${Math.floor(tmp * 1000)}`
       })
     },
-    
   }
 })

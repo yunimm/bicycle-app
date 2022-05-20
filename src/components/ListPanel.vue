@@ -13,7 +13,7 @@ function switchPanel() {
 <template>
   <!-- 點擊後會向上展開 -->
   <div
-    class="absolute h-[488px] w-full shadow-lg xl:bottom-1/2 xl:ml-12 xl:h-[80%] xl:w-[425px] xl:translate-y-[55%]"
+    class="absolute -bottom-1/3 h-[488px] w-full shadow-lg xl:bottom-1/2 xl:ml-12 xl:h-[80%] xl:w-[425px] xl:translate-y-[55%]"
     :class="{ isClickedPanel: isActive }"
   >
     <button
