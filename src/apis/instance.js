@@ -19,7 +19,6 @@ const instance = axios.create({
   },
 })
 
-
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
@@ -29,7 +28,6 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
-    this.$router.replace({ path:'/empty' })
     return Promise.reject(error);
   }
 )
@@ -44,6 +42,7 @@ function removeToken() {
 
 function getToken() {
   if(resultTime <= 3600) {
+    console.log('判斷token')
     removeToken()
     instance.post('auth/realms/TDXConnect/protocol/openid-connect/token',qs.stringify(parameter))
     .then((res) => {
@@ -54,6 +53,8 @@ function getToken() {
       localStorage.setItem('exp', expires_in)
       localStorage.setItem('set_Date', new Date(expiresTime))
       localStorage.setItem('set_seconds',expiresTime)
+      console.log('取完token')
+      location.reload()
     }).catch((err) => console.log(err.message))
   } 
 }

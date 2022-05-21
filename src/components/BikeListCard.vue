@@ -6,7 +6,10 @@ import { storeToRefs } from 'pinia'
 import { useBikeStore } from '@/stores/bikeStore'
 
 const bikes = useBikeStore()
-bikes.getData()
+;(async () => {
+  await bikes.getData()
+})()
+
 const { newData, lat, lng, isLoading } = storeToRefs(useBikeStore())
 
 watch([lat, lng], ([newLat, newLng]) => {

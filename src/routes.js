@@ -3,7 +3,7 @@ import NotFound from './views/NotFound.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
-  { path: '/', component: Home, meta: { title: 'Home' } ,redirect:{name: 'home'} },
+  { path: '/', component: Home, meta: { title: 'Home' } },
   {
     path: '/home',
     name: 'home',
@@ -15,12 +15,6 @@ export const routes = [
     name: 'route',
     meta: { title: 'Route' },
     component: () => import('./views/RouteMap.vue')
-  },
-  {
-    path: '/empty',
-    name: 'empty',
-    meta: { title: 'empty' },
-    component: () => import('./views/BlankView.vue')
   },
   { path: '/:path(.*)', component: NotFound },
 ]

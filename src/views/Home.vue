@@ -48,7 +48,8 @@ function addMark() {
 // 使用者標記
 function userMark() {
   const myIcon = L.icon({
-    iconUrl: '../src/assets/user-position.png',
+    iconUrl:
+      'https://raw.githubusercontent.com/yunimm/bicycle-app/main/src/assets/user-position.png',
     iconSize: [50, 50],
   })
   map.eachLayer(function (layer) {

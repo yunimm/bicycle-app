@@ -34,7 +34,6 @@ export const useBikeStore = defineStore('bikeStore',{
           await this.mixingData()
           await this.nearAttractions()
           await this.doAjax()
-
       } catch(e) {
         console.log(e)
       }
