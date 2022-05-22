@@ -18,11 +18,15 @@ Demo: https://yunimm.github.io/bicycle-app/
 ```
 git clone https://github.com/yunimm/bicycle-app.git
 ```
-### 4. 透過終端機進入資料夾位置後，輸入：
+### 4. 透過終端機進入資料夾位置：
+```
+cd bicycle-app
+```
+### 5. 安裝需要套件：
 ```
 npm install
 ```
 
-### 安裝完成後，繼續輸入：
+### 6. 安裝完，啟動專案：
 ```
 npm run serve
