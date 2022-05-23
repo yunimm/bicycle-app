@@ -26,7 +26,6 @@ function change() {
       </h1>
     </div>
     <div
-      v-if="$route.name === 'route' || $route.name === 'home'"
       @click.stop.prevent="change"
       class="fixed left-1/2 mt-3 flex h-9 w-[200px] -translate-x-1/2 justify-between rounded-[35px] bg-grey-100 px-1.5 py-1 xl:h-[60px] xl:w-[276px] xl:py-2 xl:px-3"
     >
