@@ -21,11 +21,11 @@
   }
   /* 只可租車和只可停車 */
   .singleService {
-    @apply rounded border border-alert-300 py-[1px] px-1 text-xs text-alert-400;
+    @apply rounded border border-alert-300 py-[1px] px-1 text-xs text-alert-400 xl:h-[32px] xl:w-[86px] xl:text-sm xl:leading-7;
   }
   /* 站點施工中 */
   .fixState {
-    @apply rounded border border-grey-300 py-[1px] px-1 text-xs text-grey-400;
+    @apply rounded border border-grey-300 py-[1px] px-1 text-center text-xs text-grey-400 xl:h-[32px] xl:w-[86px] xl:text-sm xl:leading-7;
   }
 
   /* 移動position btn */
