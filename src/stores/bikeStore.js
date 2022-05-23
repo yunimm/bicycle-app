@@ -8,10 +8,12 @@ export const useBikeStore = defineStore('bikeStore',{
       dynamicData: [],
       newData: [],
       keyword: '',
-      lat:'22.989704',
-      lng:'120.201523',
+      lat:'25.04939',
+      lng:'121.51796',
       isLoading: false,
       isActive: false,
+      cardLat:'',
+      cardLng:'',
     }
   },
   getters: {

@@ -7,7 +7,9 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import L from 'leaflet'
 
-const { lat, lng, isLoading, newData } = storeToRefs(useBikeStore())
+const { lat, lng, isLoading, newData, cardLat, cardLng } = storeToRefs(
+  useBikeStore()
+)
 const fullPage = ref(true)
 
 function onCancel() {
@@ -16,11 +18,12 @@ function onCancel() {
 
 // 初始化地圖
 let map = {}
-
+let stationMarker = []
 // 車站標記
 function addMark() {
+  let result
   newData.value.forEach((item) => {
-    L.marker([item.lat, item.lng])
+    result = L.marker([item.lat, item.lng])
       .bindPopup(
         `
         <h2 class="text-base text-primary-500 font-bold">${item.name.Zh_tw}</h2>
@@ -43,6 +46,7 @@ function addMark() {
         }
       )
       .addTo(map)
+    stationMarker.push(result)
   })
 }
 // 使用者標記
@@ -57,16 +61,18 @@ function userMark() {
       map.removeLayer(layer)
     }
   })
-  L.marker([lat.value, lng.value], { icon: myIcon })
+  const userMark = L.marker([lat.value, lng.value], { icon: myIcon })
     .bindPopup(
       '<h2 class="text-base text-primary-500 font-bold">目前位置</h2>',
       { closeButton: false }
     )
     .addTo(map)
+    .openPopup()
+  map.flyTo([lat.value, lng.value], 15)
 }
 onMounted(() => {
   // 初始化地圖
-  map = L.map('map').setView([lat.value, lng.value], 13)
+  map = L.map('map').setView([lat.value, lng.value], 15)
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
     {
@@ -79,7 +85,9 @@ onMounted(() => {
       accessToken:
         'pk.eyJ1IjoieXV1OTkxNiIsImEiOiJjbDM5ZzR6MWwwOWo3M2JtbzVxMGowb2lhIn0.ob6jktqszpw5oXjGAAPy0g',
     }
-  ).addTo(map)
+  )
+    .addTo(map)
+    .openPopup()
   userMark()
   addMark()
 })
@@ -90,6 +98,14 @@ watch(isLoading, () => {
 })
 watch([lat, lng], () => {
   userMark()
+})
+watch([cardLat, cardLng], () => {
+  map.flyTo([cardLat.value, cardLng.value], 18)
+  stationMarker.forEach((item) => {
+    if (item._latlng.lat === cardLat.value) {
+      item.openPopup()
+    }
+  })
 })
 </script>
 <template>
