@@ -1,5 +1,13 @@
 # bicycle-app
 Demo: https://yunimm.github.io/bicycle-app/
+
+![image](https://i.imgur.com/NQm1Cjl.png)
+## 專案動機
+個人獨立完成專案，透過實作專案學習新框架操作 Vue3 Composition API 語法 , Pinia 全域狀態管理,  Tailwind Utility first寫法。
+## 專案簡述
+依照設計師設計稿切版，RWD，元件功能製作，串接TDX API，載入leaflet地圖套件。
+
+使用者可以透過目前定位得知附近自行車站點和路線資訊。
 ## 功能介紹
 - 使用者可以查看附近站點
 - 使用者可以知道站點狀態
