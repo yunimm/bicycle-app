@@ -37,4 +37,4 @@ npm install
 
 ### 6. 安裝完，啟動專案：
 ```
-npm run serve
+npm run dev
