@@ -1,40 +1,40 @@
-# bicycle-app
+# Bicycle-app
 Demo: https://yunimm.github.io/bicycle-app/
 
 ![image](https://i.imgur.com/NQm1Cjl.png)
-## 專案動機
-個人獨立完成專案，透過實作專案學習新框架操作 Vue3 Composition API 語法 , Pinia 全域狀態管理,  Tailwind Utility first寫法。
-## 專案簡述
-依照設計師設計稿切版，RWD，元件功能製作，串接TDX API，載入leaflet地圖套件。
+## Motivation
+Individuals complete the project independently, and learn the new framework to operate Vue3 through the implementation of the project, including Composition API syntax, Pinia global state management, and Tailwind Utility first writing method.
 
-使用者可以透過目前定位得知附近自行車站點和路線資訊。
-## 功能介紹
-- 使用者可以查看附近站點
-- 使用者可以知道站點狀態
-- 使用者可以搜尋站點名稱
-- 使用者可在查看站點可租車輛
-- 使用者可以查看站點可還車輛
-- 使用者可以知道站點距離目前位置多遠
-### 使用技術
-- Vue3 使用框架提升開發效率，模組化元件、UI與資料分離
-- Pinia 網站全域狀態管理
-- Tailwind Utility類型的CSS框架
-## 如何啟動專案
-### 1. 本機需安裝 node.js 與 npm
-### 2. 開啟終端機建立資料夾或到指定存放位置
-### 3. 在該資料夾位置，將專案 clone 到本地
+## Description
+According to the designer's design draft, cut the version, RWD, component function production, connect the TDX API, and load the leaflet map package.
+Users can get information about nearby bicycle stops and routes through their current location.
+## Features
+- Users can view nearby sites
+- Users can know the site status
+- User can search site name
+- Users can rent vehicles at the viewing site
+- Users can view the vehicles that can be returned at the site
+- Users can know how far the site is from the current location
+### Skills
+- Vue3 Use framework to improve development efficiency, separate modular components, UI and data
+- Pinia Website global status management
+- Tailwind Utility type CSS framework
+## How to start the project
+### 1. Node.js and npm need to be installed on this machine
+### 2. Open the terminal to create a folder or go to the designated storage location
+### 3. In this folder location, clone the project locally
 ```
 git clone https://github.com/yunimm/bicycle-app.git
 ```
-### 4. 透過終端機進入資料夾位置：
+### 4. Access the folder location through the terminal：
 ```
 cd bicycle-app
 ```
-### 5. 安裝需要套件：
+### 5. Installation requires kit：
 ```
 npm install
 ```
 
-### 6. 安裝完，啟動專案：
+### 6. After installation, start the project：
 ```
 npm run dev
