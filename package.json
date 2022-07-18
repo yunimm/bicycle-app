@@ -17,7 +17,7 @@
     "qs": "^6.10.3",
     "vue": "^3.2.32",
     "vue-loading-overlay": "^5.0.3",
-    "vue-router": "^4.0.14"
+    "vue-router": "^4.1.2"
   },
   "devDependencies": {
     "@heroicons/vue": "^1.0.6",
